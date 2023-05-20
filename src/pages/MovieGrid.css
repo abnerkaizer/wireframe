@@ -57,3 +57,24 @@
   background-color: transparent;
   color: #f7d354;
 }
+.container select {
+  background-color: #f7d354;
+  border: 2px solid #f7d354;
+  border-radius: 4px;
+  color: black;
+  padding: 0.3rem;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.container select:hover {
+  background-color: transparent;
+  color: #f7d354;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
