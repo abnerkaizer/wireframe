@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import MovieCard from "../../components/MovieCard";
-import "../MovieGrid.css";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, A11y } from "swiper";
 import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 const Upcoming = () => {
   const movieURL = import.meta.env.VITE_API;
@@ -21,12 +24,12 @@ const Upcoming = () => {
     <div className="container">
       <h2 className="title">Lançamentos: </h2>
       <Swiper
+        modules={[Navigation, Pagination, A11y]}
         spaceBetween={100}
         slidesPerView={3}
         navigation
         keyboard
         pagination={{ clickable: true }}
-        scrollbar={{ draggable: true }}
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
       >
