@@ -7,7 +7,7 @@
 }
 .swiper-button-next,
 .swiper-button-prev {
-  background-color: black;
+  background-color: rgb(0, 0, 0, 0.6);
   right: 10px;
   padding: 30px;
   color: #f7d354 !important;
