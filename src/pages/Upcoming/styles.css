@@ -1,0 +1,65 @@
+.swiper-pagination-bullet-active {
+  color: #fff;
+  background: #f7d354;
+}
+.swiper-pagination-bullet {
+  color: #fff;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: black;
+  right: 10px;
+  padding: 30px;
+  color: #f7d354 !important;
+  fill: black !important;
+  stroke: black !important;
+}
+.movie-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 2rem;
+  max-width: 1200px;
+}
+
+.movie-card {
+  width: 100%;
+  color: white;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #111;
+  padding: 1rem;
+}
+
+.movie-card img {
+  max-width: 100%;
+}
+
+.movie-card img,
+.movie-card h2,
+.movie-card p {
+  margin-bottom: 1rem;
+}
+
+.movie-card p svg {
+  color: #f7d354;
+}
+
+.movie-card a {
+  background-color: #f7d354;
+  border: 2px solid #f7d354;
+  border-radius: 4px;
+  color: black;
+  padding: 1rem 0.5rem;
+  align-items: center;
+  transition: 0.4s;
+  text-align: center;
+  font-weight: bold;
+}
+.movie-card a:hover {
+  background-color: transparent;
+  color: #f7d354;
+}

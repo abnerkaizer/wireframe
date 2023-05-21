@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import "./styles.css";
 
 const Upcoming = () => {
   const movieURL = import.meta.env.VITE_API;
@@ -24,8 +25,9 @@ const Upcoming = () => {
     <div className="container">
       <h2 className="title">Lançamentos: </h2>
       <Swiper
+        style={{ "--swiper-pagination-bullet-inactive-color": "#999999" }}
         modules={[Navigation, Pagination, A11y]}
-        spaceBetween={100}
+        spaceBetween={20}
         slidesPerView={3}
         navigation
         keyboard
