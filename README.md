@@ -1,8 +1,8 @@
 # wireframe
 
-Execute using:
+Execute using npm:
 
 ```
-NPM:
+npm install
 npm run dev
 ```

@@ -31,6 +31,7 @@ const Upcoming = () => {
         slidesPerView={3}
         navigation
         keyboard
+        loop
         pagination={{ clickable: true }}
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
