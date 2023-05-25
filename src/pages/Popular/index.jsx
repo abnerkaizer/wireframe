@@ -121,19 +121,15 @@ const Popular = () => {
 
   return (
     <div className="container">
-      <div className="top">
-        <h2></h2>
-        <h2></h2>
-        <h2 className="title">Destaques: </h2>
-        <select defaultValue="Selecione uma opção" onChange={handleChange}>
-          <option disabled>Selecione uma opção</option>
-          {genres.map((genre) => (
-            <option key={genre.id} value={genre.id}>
-              {genre.name}
-            </option>
-          ))}
-        </select>
-      </div>
+      <h2 className="title">Destaques: </h2>
+      <select defaultValue="Selecione uma opção" onChange={handleChange}>
+        <option disabled>Selecione uma opção</option>
+        {genres.map((genre) => (
+          <option key={genre.id} value={genre.id}>
+            {genre.name}
+          </option>
+        ))}
+      </select>
       <div className="movies-container">
         {isLoading && <p>Carregando...</p>}
         {!isLoading && popularMovies.length === 0 && (
