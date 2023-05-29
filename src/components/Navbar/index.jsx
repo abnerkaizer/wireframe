@@ -24,7 +24,7 @@ const Navbar = () => {
   return (
     <nav id="navbar">
       <h2>
-        <Link to="/">
+        <Link to="/wireframe">
           <BiCameraMovie />
           Wireframe
         </Link>
