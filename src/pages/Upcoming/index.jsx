@@ -33,8 +33,6 @@ const Upcoming = () => {
         keyboard
         loop
         pagination={{ clickable: true }}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
       >
         <div className="movies-container">
           {upcomingMovies.length === 0 && <p>Carregando...</p>}

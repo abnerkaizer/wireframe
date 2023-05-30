@@ -108,7 +108,6 @@ const Popular = () => {
     setSelectedOption(value);
   };
   useEffect(() => {
-    console.log(selectedOption);
     if (selectedOption) {
       const filteredMovies = originalPopularMovies.filter((movie) =>
         movie.genre_ids.includes(selectedOption)
