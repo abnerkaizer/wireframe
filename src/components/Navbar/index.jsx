@@ -10,16 +10,16 @@ const Navbar = () => {
     if (!search) {
       return;
     }
-    navigate(`/search?q=${search}`);
+    navigate(`/wireframe/search?q=${search}`);
     setSearch("");
   };
   const handleUpcoming = (e) => {
     e.preventDefault();
-    navigate(`/upcoming`);
+    navigate(`/wireframe/upcoming`);
   };
   const handlePopular = (e) => {
     e.preventDefault();
-    navigate(`/popular`);
+    navigate(`/wireframe/popular`);
   };
   return (
     <nav id="navbar">
