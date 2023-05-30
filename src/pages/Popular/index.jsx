@@ -121,8 +121,8 @@ const Popular = () => {
   return (
     <div className="container">
       <h2 className="title">Destaques: </h2>
-      <select defaultValue="Selecione uma opção" onChange={handleChange}>
-        <option disabled>Selecione uma opção</option>
+      <select defaultValue="Selecione um gênero" onChange={handleChange}>
+        <option disabled>Selecione um gênero</option>
         {genres.map((genre) => (
           <option key={genre.id} value={genre.id}>
             {genre.name}
