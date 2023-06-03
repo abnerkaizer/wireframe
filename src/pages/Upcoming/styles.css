@@ -43,7 +43,9 @@
 .movie-card p {
   margin-bottom: 1rem;
 }
-
+.movie-card h2 {
+  font-size: large;
+}
 .movie-card p svg {
   color: #f7d354;
 }
