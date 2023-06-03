@@ -36,6 +36,24 @@ const Movie = () => {
     const [genre] = genres;
     return genre.name;
   };
+  function convertMinutesToHours(minutes) {
+    var hours = Math.floor(minutes / 60);
+    var remainingMinutes = minutes % 60;
+
+    // Format the result as a string
+    var result;
+    if (hours > 1) {
+      result = hours + " Horas ";
+    } else {
+      result = hours + " Hora ";
+    }
+    if (remainingMinutes > 0) {
+      result += remainingMinutes + " Minutos";
+    }
+
+    return result;
+  }
+
   return (
     <div className="movie-page">
       {movie && (
@@ -66,7 +84,7 @@ const Movie = () => {
             <h3>
               <BsHourglassSplit /> Duração
             </h3>
-            <p>{movie.runtime} minutos</p>
+            <p>{convertMinutesToHours(movie.runtime)}</p>
           </div>
           <div className="info description">
             <h3>

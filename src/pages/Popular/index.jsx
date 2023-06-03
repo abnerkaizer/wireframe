@@ -5,88 +5,40 @@ import "../MovieGrid.css";
 const Popular = () => {
   const movieURL = import.meta.env.VITE_API;
   const apiKey = import.meta.env.VITE_API_KEY;
-  const genres = [
-    {
-      id: 28,
-      name: "Action",
-    },
-    {
-      id: 12,
-      name: "Adventure",
-    },
-    {
-      id: 16,
-      name: "Animation",
-    },
-    {
-      id: 35,
-      name: "Comedy",
-    },
-    {
-      id: 80,
-      name: "Crime",
-    },
-    {
-      id: 99,
-      name: "Documentary",
-    },
-    {
-      id: 18,
-      name: "Drama",
-    },
-    {
-      id: 10751,
-      name: "Family",
-    },
-    {
-      id: 14,
-      name: "Fantasy",
-    },
-    {
-      id: 36,
-      name: "History",
-    },
-    {
-      id: 27,
-      name: "Horror",
-    },
-    {
-      id: 10402,
-      name: "Music",
-    },
-    {
-      id: 9648,
-      name: "Mystery",
-    },
-    {
-      id: 10749,
-      name: "Romance",
-    },
-    {
-      id: 878,
-      name: "Science Fiction",
-    },
-    {
-      id: 10770,
-      name: "TV Movie",
-    },
-    {
-      id: 53,
-      name: "Thriller",
-    },
-    {
-      id: 10752,
-      name: "War",
-    },
-    {
-      id: 37,
-      name: "Western",
-    },
-  ];
+  const genreURL = import.meta.env.VITE_GENRE;
+  const token = import.meta.env.VITE_TOKEN;
 
   const [popularMovies, setPopularMovies] = useState([]);
   const [originalPopularMovies, setOriginalPopularMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [genres, setGenres] = useState([]);
+
+  const getGenres = async () => {
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    try {
+      const response = await fetch(
+        "https://api.themoviedb.org/3/genre/movie/list?language=pt",
+        options
+      );
+      const data = await response.json();
+      setGenres(data.genres);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    const genresUrl = `${genreURL}?${apiKey}`;
+    getGenres(genresUrl);
+  }, []);
 
   const getPopularMovies = async (url) => {
     const resp = await fetch(url);
@@ -97,10 +49,12 @@ const Popular = () => {
   };
 
   useEffect(() => {
-    const popularUrl = `${movieURL}popular?${apiKey}`;
+    const popularUrl = `${movieURL}popular?${apiKey}&page=${page}`;
     getPopularMovies(popularUrl);
+    setPage((page) => (page += 1));
   }, []);
-  const [selectedOption, setSelectedOption] = useState(Number);
+
+  const [selectedOption, setSelectedOption] = useState("");
 
   const handleChange = (event) => {
     event.preventDefault();
