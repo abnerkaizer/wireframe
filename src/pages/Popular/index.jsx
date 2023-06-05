@@ -86,7 +86,7 @@ const Popular = () => {
       <div className="movies-container">
         {isLoading && <p>Loading...</p>}
         {!isLoading && popularMovies.length === 0 && (
-          <p>Não há filmes desse gênero.</p>
+          <p>No movies with this genre.</p>
         )}
         {!isLoading &&
           popularMovies.length > 0 &&
