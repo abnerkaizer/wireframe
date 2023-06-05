@@ -30,14 +30,14 @@ const Navbar = () => {
         </Link>
       </h2>
       <form className="menu">
-        <button onClick={handleUpcoming}>Lançamentos</button>
+        <button onClick={handleUpcoming}>Upcoming</button>
         <span></span>
-        <button onClick={handlePopular}>Destaques</button>
+        <button onClick={handlePopular}>Popular</button>
       </form>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Busque um filme"
+          placeholder="Search a movie"
           onChange={(event) => setSearch(event.target.value)}
           value={search}
         />

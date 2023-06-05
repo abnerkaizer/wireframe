@@ -25,7 +25,7 @@ const Popular = () => {
 
     try {
       const response = await fetch(
-        "https://api.themoviedb.org/3/genre/movie/list?language=pt",
+        "https://api.themoviedb.org/3/genre/movie/list?language=en",
         options
       );
       const data = await response.json();
@@ -74,9 +74,9 @@ const Popular = () => {
 
   return (
     <div className="container">
-      <h2 className="title">Destaques: </h2>
-      <select defaultValue="Selecione um gênero" onChange={handleChange}>
-        <option disabled>Selecione um gênero</option>
+      <h2 className="title">Popular: </h2>
+      <select defaultValue="Select a genre" onChange={handleChange}>
+        <option disabled>Select a genre</option>
         {genres.map((genre) => (
           <option key={genre.id} value={genre.id}>
             {genre.name}
@@ -84,7 +84,7 @@ const Popular = () => {
         ))}
       </select>
       <div className="movies-container">
-        {isLoading && <p>Carregando...</p>}
+        {isLoading && <p>Loading...</p>}
         {!isLoading && popularMovies.length === 0 && (
           <p>Não há filmes desse gênero.</p>
         )}

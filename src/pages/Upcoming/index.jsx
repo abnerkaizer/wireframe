@@ -23,7 +23,7 @@ const Upcoming = () => {
   }, []);
   return (
     <div className="container">
-      <h2 className="title">Lançamentos: </h2>
+      <h2 className="title">Upcoming: </h2>
       <Swiper
         style={{ "--swiper-pagination-bullet-inactive-color": "#999999" }}
         modules={[Navigation, Pagination, A11y]}
@@ -35,7 +35,7 @@ const Upcoming = () => {
         pagination={{ clickable: true }}
       >
         <div className="movies-container">
-          {upcomingMovies.length === 0 && <p>Carregando...</p>}
+          {upcomingMovies.length === 0 && <p>Loading...</p>}
           {upcomingMovies.length > 0 &&
             upcomingMovies.map((movie) => (
               <SwiperSlide key={movie.id}>
