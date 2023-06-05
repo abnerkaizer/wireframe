@@ -16,15 +16,27 @@ const apiKey = import.meta.env.VITE_API_KEY;
 const Movie = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
+  const [trailer, setTrailer] = useState(null);
 
   const getMovie = async (url) => {
     const resp = await fetch(url);
     const data = await resp.json();
     setMovie(data);
   };
+  const getTrailer = async (url) => {
+    const resp = await fetch(url);
+    const data = await resp.json();
+    const trailer = data.results.find(
+      (video) => video.type === "Trailer" && video.site === "YouTube"
+    );
+    setTrailer(trailer);
+  };
+
   useEffect(() => {
     const movieUrl = `${movieURL}${id}?${apiKey}`;
+    const trailerUrl = `${movieURL}${id}/videos?${apiKey}`;
     getMovie(movieUrl);
+    getTrailer(trailerUrl);
   }, []);
   const formatCurrency = (number) => {
     return number.toLocaleString("en-US", {
@@ -44,13 +56,14 @@ const Movie = () => {
     var result;
     if (hours > 1) {
       result = hours + " Horas ";
-    } else {
+    } else if (hours == 1) {
       result = hours + " Hora ";
+    } else {
+      result = "";
     }
     if (remainingMinutes > 0) {
       result += remainingMinutes + " Minutos";
     }
-
     return result;
   }
 
@@ -58,7 +71,7 @@ const Movie = () => {
     <div className="movie-page">
       {movie && (
         <>
-          <MovieCard movie={movie} showLink={false} />
+          <MovieCard movie={movie} showLink={false} trailer={trailer} />
           <p className="tagline">{movie.tagline}</p>
           <div className="info">
             <h3>
