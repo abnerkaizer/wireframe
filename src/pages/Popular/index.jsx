@@ -12,7 +12,6 @@ const Popular = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [genres, setGenres] = useState([]);
-  const [newMovie, setNewMovie] = useState(false);
 
   const getGenres = async () => {
     const options = {
@@ -36,7 +35,7 @@ const Popular = () => {
   };
 
   useEffect(() => {
-    getGenres(); // Call getGenres function here
+    getGenres();
   }, []);
 
   const getPopularMovies = async (url) => {
@@ -46,10 +45,12 @@ const Popular = () => {
     setOriginalPopularMovies(data.results);
     setIsLoading(false);
   };
+
   useEffect(() => {
     const popularUrl = `${movieURL}popular?${apiKey}&page=${page}`;
     getPopularMovies(popularUrl);
   }, [isLoading]);
+
   const getNewPopularMovies = async (url) => {
     const resp = await fetch(url);
     const data = await resp.json();
