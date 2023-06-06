@@ -6,7 +6,7 @@ const imageUrl = import.meta.env.VITE_IMG;
 const MovieCard = ({ movie, showLink = true, trailer }) => {
   return (
     <div className="movie-card">
-      {trailer ? (
+      {trailer && trailer.key ? (
         <YouTubeVideo videoId={trailer.key} />
       ) : (
         <img src={imageUrl + movie.poster_path} alt={movie.title} />
