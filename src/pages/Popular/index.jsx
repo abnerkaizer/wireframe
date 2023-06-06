@@ -36,8 +36,7 @@ const Popular = () => {
   };
 
   useEffect(() => {
-    const genresUrl = `${genreURL}?${apiKey}`;
-    getGenres(genresUrl);
+    getGenres(); // Call getGenres function here
   }, []);
 
   const getPopularMovies = async (url) => {
@@ -47,13 +46,21 @@ const Popular = () => {
     setOriginalPopularMovies(data.results);
     setIsLoading(false);
   };
-
   useEffect(() => {
     const popularUrl = `${movieURL}popular?${apiKey}&page=${page}`;
     getPopularMovies(popularUrl);
-    setPage((page) => (page += 1));
-  }, []);
-
+  }, [isLoading]);
+  const getNewPopularMovies = async (url) => {
+    const resp = await fetch(url);
+    const data = await resp.json();
+    setPopularMovies((movies) => [...movies, ...data.results]);
+    setOriginalPopularMovies((movies) => [...movies, ...data.results]);
+    setIsLoading(false);
+  };
+  useEffect(() => {
+    const popularUrl = `${movieURL}popular?${apiKey}&page=${page}`;
+    getNewPopularMovies(popularUrl);
+  }, [page]);
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleChange = (event) => {
@@ -70,7 +77,29 @@ const Popular = () => {
     } else {
       setPopularMovies(originalPopularMovies);
     }
-  }, [selectedOption]);
+  }, [selectedOption, page]);
+
+  const handleScroll = () => {
+    const scrollTop =
+      (document.documentElement && document.documentElement.scrollTop) ||
+      document.body.scrollTop;
+    const scrollHeight =
+      (document.documentElement && document.documentElement.scrollHeight) ||
+      document.body.scrollHeight;
+    const clientHeight =
+      document.documentElement.clientHeight || window.innerHeight;
+    const scrolledToBottom =
+      Math.ceil(scrollTop + clientHeight) >= scrollHeight;
+
+    if (!isLoading && scrolledToBottom) {
+      setPage((page) => page + 1);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isLoading]);
 
   return (
     <div className="container">
