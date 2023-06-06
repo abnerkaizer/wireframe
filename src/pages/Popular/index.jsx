@@ -76,6 +76,9 @@ const Popular = () => {
         movie.genre_ids.includes(selectedOption)
       );
       setPopularMovies(filteredMovies);
+      if (filteredMovies.length < 20) {
+        setPage((page) => page + 1);
+      }
     } else {
       setPopularMovies(originalPopularMovies);
     }
