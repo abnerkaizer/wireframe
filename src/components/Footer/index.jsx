@@ -6,7 +6,7 @@ const Footer = () => {
     <footer>
       <img src={logo} alt="commit-logo" />
       <p>
-        Produzido por Abner Kaizer.
+        Abner Kaizer
         <br />
         MIT License.
       </p>
