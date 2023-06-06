@@ -5,7 +5,6 @@ import "../MovieGrid.css";
 const Popular = () => {
   const movieURL = import.meta.env.VITE_API;
   const apiKey = import.meta.env.VITE_API_KEY;
-  const genreURL = import.meta.env.VITE_GENRE;
   const token = import.meta.env.VITE_TOKEN;
 
   const [popularMovies, setPopularMovies] = useState([]);
@@ -13,6 +12,7 @@ const Popular = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [genres, setGenres] = useState([]);
+  const [newMovie, setNewMovie] = useState(false);
 
   const getGenres = async () => {
     const options = {
@@ -55,14 +55,7 @@ const Popular = () => {
     const data = await resp.json();
     setPopularMovies((movies) => [...movies, ...data.results]);
     setOriginalPopularMovies((movies) => [...movies, ...data.results]);
-    if (selectedOption) {
-      const filteredMovies = originalPopularMovies.filter((movie) =>
-        movie.genre_ids.includes(selectedOption)
-      );
-      setPopularMovies(filteredMovies);
-    } else {
-      setPopularMovies(originalPopularMovies);
-    }
+    getSelectedMovies();
     setIsLoading(false);
   };
   useEffect(() => {
@@ -77,7 +70,7 @@ const Popular = () => {
     const value = parseInt(event.target.value);
     setSelectedOption(value);
   };
-  useEffect(() => {
+  const getSelectedMovies = () => {
     if (selectedOption) {
       const filteredMovies = originalPopularMovies.filter((movie) =>
         movie.genre_ids.includes(selectedOption)
@@ -86,6 +79,9 @@ const Popular = () => {
     } else {
       setPopularMovies(originalPopularMovies);
     }
+  };
+  useEffect(() => {
+    getSelectedMovies();
   }, [selectedOption]);
 
   const handleScroll = () => {

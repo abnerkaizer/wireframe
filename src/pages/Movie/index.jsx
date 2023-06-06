@@ -44,10 +44,11 @@ const Movie = () => {
       currency: "USD",
     });
   };
-  const getGenre = (genres) => {
-    const [genre] = genres;
-    return genre.name;
+  const getGenres = (genres) => {
+    const genreNames = genres.map((genre) => genre.name);
+    return genreNames.join(", ");
   };
+
   function convertMinutesToHours(minutes) {
     var hours = Math.floor(minutes / 60);
     var remainingMinutes = minutes % 60;
@@ -75,9 +76,9 @@ const Movie = () => {
           <p className="tagline">{movie.tagline}</p>
           <div className="info">
             <h3>
-              <BiCameraMovie /> Genre:
+              <BiCameraMovie /> Genres:
             </h3>
-            <p>{getGenre(movie.genres)}</p>
+            <p>{getGenres(movie.genres)}</p>
           </div>
           <div className="info"></div>
           <div className="info">
