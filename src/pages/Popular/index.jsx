@@ -55,12 +55,21 @@ const Popular = () => {
     const data = await resp.json();
     setPopularMovies((movies) => [...movies, ...data.results]);
     setOriginalPopularMovies((movies) => [...movies, ...data.results]);
+    if (selectedOption) {
+      const filteredMovies = originalPopularMovies.filter((movie) =>
+        movie.genre_ids.includes(selectedOption)
+      );
+      setPopularMovies(filteredMovies);
+    } else {
+      setPopularMovies(originalPopularMovies);
+    }
     setIsLoading(false);
   };
   useEffect(() => {
     const popularUrl = `${movieURL}popular?${apiKey}&page=${page}`;
     getNewPopularMovies(popularUrl);
   }, [page]);
+
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleChange = (event) => {
@@ -77,7 +86,7 @@ const Popular = () => {
     } else {
       setPopularMovies(originalPopularMovies);
     }
-  }, [selectedOption, page]);
+  }, [selectedOption]);
 
   const handleScroll = () => {
     const scrollTop =
